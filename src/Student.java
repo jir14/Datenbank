@@ -1,10 +1,10 @@
 import java.util.List;
 
 public abstract class Student {
-	protected String Name;
-	protected String Surname;
-	protected static int ID;
-	protected String BirthDate;
+	private String Name;
+	private String Surname;
+	private static int ID;
+	private String BirthDate;
 	protected List<Student> StudentList;
 	protected List<Integer> StudentMarks;
 	
@@ -12,6 +12,22 @@ public abstract class Student {
 		Name=name;
 		Surname=surname;
 		BirthDate=birthDate;
+	}
+
+	public void setName(String name) {
+		Name=name;
+	}
+
+	public void setSurname(String surname) {
+		Surname=surname;
+	}
+
+	public String getName(String name) {
+		return Name;
+	}
+
+	public String getSurname(String surname) {
+		return Surname;
 	}
 
 	public boolean AddMark(Integer mark) {
