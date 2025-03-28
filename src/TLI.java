@@ -3,8 +3,8 @@ import java.util.Map;
 
 public class TLI extends Student {
 
-    public TLI(Integer oborID, String name, String surname, String birthDate) {
-        super(oborID, name, surname, birthDate);
+    public TLI(Integer id, Integer oborID, String name, String surname, Integer birthDate) {
+        super(id, oborID, name, surname, birthDate);
     }
 
     @Override

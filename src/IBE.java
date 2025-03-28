@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class IBE extends Student {
 
-    public IBE(Integer oborID, String name, String surname, String birthDate) {
-        super(oborID, name, surname, birthDate);
+    public IBE(Integer id, Integer oborID, String name, String surname, Integer birthDate) {
+        super(id, oborID, name, surname, birthDate);
     }
 
     @Override

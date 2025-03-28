@@ -5,12 +5,14 @@ public abstract class Student implements Comparable<Object> {
 	private String Surname;
 	private int OborID;
 	private int ID;
-	private String BirthDate;
+	private	double StudPrumer=0.0;
+	private Integer BirthDate;
 	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
 	
 	public abstract String specialAbility();
 
-	public Student(Integer oborID, String name, String surname, String birthDate) {
+	public Student(Integer id, Integer oborID, String name, String surname, Integer birthDate) {
+		ID=id;
 		OborID=oborID;
 		Name=name;
 		Surname=surname;
@@ -25,7 +27,7 @@ public abstract class Student implements Comparable<Object> {
 		return Surname;
 	}
 
-	public String getBirtDate() {
+	public Integer getBirthDate() {
 		return BirthDate;
 	}
 
@@ -36,6 +38,7 @@ public abstract class Student implements Comparable<Object> {
 	public boolean addMark(Integer mark) {
 		if (mark >= 1 && mark <= 5) {
 			StudentMarks.add(mark);
+			calcStudPrumer();
 			return true;
 		}
 		return false;
@@ -47,5 +50,17 @@ public abstract class Student implements Comparable<Object> {
 
 	public Integer getOborID() {
 		return OborID;
+	}
+
+	public double getStudPrumer() {
+		return StudPrumer;
+	}
+
+	private double calcStudPrumer() {
+		double sum=0;
+		for (Integer mark : StudentMarks) {
+			sum+=mark;
+		}
+		return sum/StudentMarks.size();
 	}
 }

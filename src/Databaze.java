@@ -21,10 +21,10 @@ public class Databaze {
         getNextID();
         switch (oborID) {
             case 1:
-                StudentList.put(ID, new TLI(ID, oborID, name, surname,birthDate));
+                StudentList.put(ID, new TLI(ID, oborID, name, surname, birthDate));
                 break;
             case 2:
-                StudentList.put(ID, new IBE(ID, oborID, name, surname,birthDate));
+                StudentList.put(ID, new IBE(ID, oborID, name, surname, birthDate));
                 break;
 
             default:
@@ -51,6 +51,11 @@ public class Databaze {
         return studs;
     }
 
+    public void getStudentsInInfo(Integer id) {
+        getOrderedStudentsIn(id);
+        getStudentInfo(id);
+    }
+
     public ArrayList<Student> getStudentsIn(Integer oborID) {
         ArrayList<Student> studs = new ArrayList<Student>();
         for (Student stud : StudentList.values()) {
@@ -70,7 +75,7 @@ public class Databaze {
         return sum/studs.size();
     }
 
-    public Integer getNumberOfStudents(Integer oborID) {
+    public Integer getNumberOfStudentsIn(Integer oborID) {
         int studs=0;
         for (Student stud : StudentList.values()) {
             if (stud.getOborID()==oborID) {
@@ -81,12 +86,10 @@ public class Databaze {
     }
 
     public void setMark(Integer id, Integer mark) {
-        StudentList.get(id).setMark(mark);
+        StudentList.get(id).addMark(mark);
     }
 
     public void specialAbility(Integer id) {
         StudentList.get(id).specialAbility();
     }
-
-
 }
