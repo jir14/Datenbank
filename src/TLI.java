@@ -14,7 +14,7 @@ public class TLI extends Student {
 
         Map<Character, String> MorseCode = new HashMap<>();
 
-        // Adding key-value pairs
+        // Určování morseova kodu
         MorseCode.put('a', "...");
         MorseCode.put('b', "...");
         MorseCode.put('c', "...");
@@ -45,6 +45,7 @@ public class TLI extends Student {
         for (int i = 0; i < nameArray.length; i++)
         {
             pismeno = nameArray[i];
+            pismeno = Character.toLowerCase(pismeno);
             morse += MorseCode.get(pismeno);
         }
 
