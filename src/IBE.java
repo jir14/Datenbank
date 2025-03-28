@@ -2,8 +2,9 @@
 import java.util.Random;
 
 public class IBE extends Student {
-    public IBE(String name, String surname, String birthDate) {
-        super(name, surname, birthDate);
+
+    public IBE(Integer oborID, String name, String surname, String birthDate) {
+        super(oborID, name, surname, birthDate);
     }
 
     @Override

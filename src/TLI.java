@@ -2,8 +2,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TLI extends Student {
-    public TLI(String name, String surname, String birthDate) {
-        super(name, surname, birthDate);
+
+    public TLI(Integer oborID, String name, String surname, String birthDate) {
+        super(oborID, name, surname, birthDate);
     }
 
     @Override

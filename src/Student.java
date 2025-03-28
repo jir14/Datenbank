@@ -1,16 +1,17 @@
 import java.util.ArrayList;
-import java.util.List;
 
-public abstract class Student {
+public abstract class Student implements Comparable {
 	private String Name;
 	private String Surname;
+	private int OborID;
 	private int ID;
 	private String BirthDate;
 	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
 	
 	public abstract String specialAbility();
 
-	public Student(String name, String surname, String birthDate) {
+	public Student(Integer oborID, String name, String surname, String birthDate) {
+		OborID=oborID;
 		Name=name;
 		Surname=surname;
 		BirthDate=birthDate;
@@ -22,6 +23,10 @@ public abstract class Student {
 
 	public String getSurname() {
 		return Surname;
+	}
+
+	public String getBirtDate() {
+		return BirthDate;
 	}
 
 	public Integer getID() {
@@ -40,4 +45,7 @@ public abstract class Student {
 		return StudentMarks;
 	}
 
+	public Integer getOborID() {
+		return OborID;
+	}
 }
