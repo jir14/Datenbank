@@ -11,7 +11,7 @@ public class IBE extends Student {
     {
         Random rand = new Random();
         int hash = rand.nextInt(11);
-        int HashNumber;
+        int HashNumber = 0;
         String hashName = "";
         String hashSurname = "";
         int pismenoNmbr;
@@ -22,13 +22,13 @@ public class IBE extends Student {
 
         for (int i = 0; i < pismeno.length; i++) {
             pismenoNmbr = Character.getNumericValue(pismeno[i]);
-            HashNumber = pismenoNmbr*hash;
+            HashNumber += pismenoNmbr*hash;
             hashName = String.valueOf(HashNumber);
         }
 
         for (int i = 0; i < pismenoSurname.length; i++) {
             pismenoNmbr = Character.getNumericValue(pismenoSurname[i]);
-            HashNumber = pismenoNmbr*hash;
+            HashNumber += pismenoNmbr*hash;
             hashSurname = String.valueOf(HashNumber);
         }
 
