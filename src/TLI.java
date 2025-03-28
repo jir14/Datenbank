@@ -18,7 +18,7 @@ public class TLI extends Student {
         MorseCode.put('a', ".-");
         MorseCode.put('b', "-...");
         MorseCode.put('c', "-.-.");
-        MorseCode.put('d', "...");
+        MorseCode.put('d', "-..");
         MorseCode.put('e', "...");
         MorseCode.put('f', "...");
         MorseCode.put('g', "...");
