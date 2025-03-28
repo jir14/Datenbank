@@ -6,7 +6,6 @@ public abstract class Student {
 	private String Surname;
 	private int ID;
 	private String BirthDate;
-	protected ArrayList<Student> StudentList = new ArrayList<Student>();
 	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
 	
 	public abstract String specialAbility();
@@ -15,7 +14,6 @@ public abstract class Student {
 		Name=name;
 		Surname=surname;
 		BirthDate=birthDate;
-		ID=Databaze.getNextID();
 	}
 
 	public String getName() {
