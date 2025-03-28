@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Student {
 	private String Name;
 	private String Surname;
-	private static int ID;
+	private int ID = 1;
 	private String BirthDate;
 	protected ArrayList<Student> StudentList = new ArrayList<Student>();
 	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
@@ -15,6 +15,7 @@ public abstract class Student {
 		Name=name;
 		Surname=surname;
 		BirthDate=birthDate;
+		ID=ID+1;
 	}
 
 	public String getName() {
@@ -23,6 +24,10 @@ public abstract class Student {
 
 	public String getSurname() {
 		return Surname;
+	}
+
+	public Integer getID() {
+		return ID;
 	}
 
 	public boolean addMark(Integer mark) {
