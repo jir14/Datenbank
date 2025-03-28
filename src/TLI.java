@@ -15,9 +15,9 @@ public class TLI extends Student {
         Map<Character, String> MorseCode = new HashMap<>();
 
         // Určování morseova kodu
-        MorseCode.put('a', "...");
-        MorseCode.put('b', "...");
-        MorseCode.put('c', "...");
+        MorseCode.put('a', ".-");
+        MorseCode.put('b', "-...");
+        MorseCode.put('c', "-.-.");
         MorseCode.put('d', "...");
         MorseCode.put('e', "...");
         MorseCode.put('f', "...");
