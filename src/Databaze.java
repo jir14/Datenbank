@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,13 +43,13 @@ public class Databaze {
     }
 
     public ArrayList<Student> getOrderedStudents(Integer oborID) {
-        ArrayList<Student> studs = new ArrayList<Student>();/*
+        ArrayList<Student> studs = new ArrayList<Student>();
         for (Student stud : StudentList.values()) {
             if (stud.getOborID()==oborID) {
                 studs.add(stud);
             }
-        }
-        */
+        }       
+        Collections.sort(studs);
         return studs;
     }
 }

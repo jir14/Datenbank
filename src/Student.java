@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Student implements Comparable {
+public abstract class Student implements Comparable<Object> {
 	private String Name;
 	private String Surname;
 	private int OborID;

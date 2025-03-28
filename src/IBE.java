@@ -35,4 +35,15 @@ public class IBE extends Student {
 
         return hashName + " " + hashSurname;
     }
+
+	@Override
+	public int compareTo(Object o) {
+        if (this.getSurname().compareTo(((Student)o).getSurname())<0) {
+            return -1;
+        }
+        if (this.getSurname().compareTo(((Student)o).getSurname())>0) {
+            return 1;
+        }
+		return 0;
+	}
 }
