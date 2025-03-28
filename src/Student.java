@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Student {
 	private String Name;
 	private String Surname;
-	private int ID = 1;
+	private int ID;
 	private String BirthDate;
 	protected ArrayList<Student> StudentList = new ArrayList<Student>();
 	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
@@ -15,7 +15,7 @@ public abstract class Student {
 		Name=name;
 		Surname=surname;
 		BirthDate=birthDate;
-		ID=ID+1;
+		ID=Databaze.getNextID();
 	}
 
 	public String getName() {
