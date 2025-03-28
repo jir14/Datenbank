@@ -22,11 +22,11 @@ public abstract class Student {
 		Surname=surname;
 	}
 
-	public String getName(String name) {
+	public String getName() {
 		return Name;
 	}
 
-	public String getSurname(String surname) {
+	public String getSurname() {
 		return Surname;
 	}
 
