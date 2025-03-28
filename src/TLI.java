@@ -6,7 +6,7 @@ public class TLI extends Student {
         super(name, surname, birthDate);
     }
 
-    public String NameToMorse()
+    public String specialAbility()
     {
         String morse = "";
         char pismeno;

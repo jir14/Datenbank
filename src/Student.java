@@ -31,10 +31,12 @@ public abstract class Student {
 	}
 
 	public boolean AddMark(Integer mark) {
-		if (mark >= 1 && mark <=5) {
+		if (mark >= 1 && mark <= 5) {
 			StudentMarks.add(mark);
 			return true;
 		}
 		return false;
 	}
+
+	public abstract String specialAbility();
 }
