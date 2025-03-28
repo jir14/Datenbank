@@ -6,6 +6,7 @@ public class TLI extends Student {
         super(name, surname, birthDate);
     }
 
+    @Override
     public String specialAbility()
     {
         String morseName = "";
