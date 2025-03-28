@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Student {
@@ -5,21 +6,15 @@ public abstract class Student {
 	private String Surname;
 	private static int ID;
 	private String BirthDate;
-	protected List<Student> StudentList;
-	protected List<Integer> StudentMarks;
+	protected ArrayList<Student> StudentList = new ArrayList<Student>();
+	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
 	
+	public abstract String specialAbility();
+
 	public Student(String name, String surname, String birthDate) {
 		Name=name;
 		Surname=surname;
 		BirthDate=birthDate;
-	}
-
-	public void setName(String name) {
-		Name=name;
-	}
-
-	public void setSurname(String surname) {
-		Surname=surname;
 	}
 
 	public String getName() {
@@ -30,7 +25,7 @@ public abstract class Student {
 		return Surname;
 	}
 
-	public boolean AddMark(Integer mark) {
+	public boolean addMark(Integer mark) {
 		if (mark >= 1 && mark <= 5) {
 			StudentMarks.add(mark);
 			return true;
@@ -38,5 +33,8 @@ public abstract class Student {
 		return false;
 	}
 
-	public abstract String specialAbility();
+	public ArrayList<Integer> getMarks() {
+		return StudentMarks;
+	}
+
 }
