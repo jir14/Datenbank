@@ -8,9 +8,11 @@ public class TLI extends Student {
 
     public String specialAbility()
     {
-        String morse = "";
+        String morseName = "";
+        String morseSurname = "";
         char pismeno;
-        char[] nameArray = getName().toCharArray();
+        char[] nameArray= getName().toCharArray();
+        char[] surnameArray= getSurname().toCharArray();
 
         Map<Character, String> MorseCode = new HashMap<>();
 
@@ -46,8 +48,16 @@ public class TLI extends Student {
         {
             pismeno = nameArray[i];
             pismeno = Character.toLowerCase(pismeno);
-            morse += MorseCode.get(pismeno) + " ";
+            morseName += MorseCode.get(pismeno) + " ";
         }
-        return morse;
+
+        for (int i = 0; i < surnameArray.length; i++)
+        {
+            pismeno = surnameArray[i];
+            pismeno = Character.toLowerCase(pismeno);
+            morseSurname += MorseCode.get(pismeno) + " ";
+        }
+
+        return morseName + " " + morseSurname;
     }
 }
