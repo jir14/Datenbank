@@ -9,7 +9,7 @@ public class App {
 
         //Debug
         System.out.println("--- DEBUG START ---");
-        /*
+        
         db.setStudent(1, "pero", "bengr", 2001);
         db.setStudent(1, "david", "ahuj", 2001);
         db.setStudent(2, "zdenek", "zabak", 2001);
@@ -20,7 +20,7 @@ public class App {
         db.setMark(2, 2);
         db.setMark(3, 5);
         db.setMark(4, 2);
-        */
+        
 
         System.out.println("--- DEBUG END ---");
         //Debug
@@ -76,6 +76,8 @@ public class App {
                     db.setStudent(oborID, name, surname, birthDate);
                     System.out.println("Student vytvoren, ID=" + db.getID());
                     break;
+                
+                //3. Vypis studenta
                 case 3:
                     int ID=0;
                     boolean repeat=true;
@@ -90,12 +92,38 @@ public class App {
                     } while (repeat);
                     db.getStudentInfo(ID);
                     break;
-
                 
+                //4. Abecedni vypis studentu
+                case 4:
+                    break;
+                
+                //5. Informace o oboru
+                case 5:
+                    int vyberID = 0;
+
+                    do { 
+                        System.out.print("Zadejte obor: [0 - Obecne; 1 - TLI; 2 - IBE]");
+                        vyberID = Tests.IntOnly(sc);
+                        
+                    } while (vyberID > 2 || vyberID < 0);
+
+                    double avgVysledek = db.getAvgIn(vyberID);
+
+                    //Rozhodnout pokud chceme případ 0 (obecně) nebo ne
+                    if(Double.isNaN(avgVysledek)) 
+                    {
+                            System.out.println("Nebyly zadany znamky pro vypocet prumeru");
+                    }
+                    else 
+                    {                   
+                        System.out.println("Prumer:" + db.getAvgIn(vyberID));
+                    }
+                    break;
                 default:
                     System.out.println("Vyla zvolena neexistujici volba");
                     break;
             } 
+            System.out.println();
         }  
     }
 }
