@@ -1,3 +1,4 @@
+# WE :cupid: JAVA:exclamation::boom::fire: ! :trollface:
 
 ![VUT logo](https://vizual.vut.cz/images/o5.png)
 
@@ -9,7 +10,7 @@
 | :newspaper:  | frontend impelemented  |
 | :x:  | not implemented yet  |
 
-:heavy_check_mark:
+## States of implementing required features
 
 | state  | zadani | implemented in | checkes | exceptions |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
