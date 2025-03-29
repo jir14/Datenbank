@@ -33,4 +33,4 @@
 
 ### Banger na konec
 :clapper: https://www.youtube.com/watch?v=yup8gIXxWDU
-<video src='https://www.youtube.com/watch?v=yup8gIXxWDU' width=180/>
+[![Watch the video](https://img.youtube.com/vi/yup8gIXxWDU/hqdefault.jpg)](https://youtu.be/yup8gIXxWDU)
