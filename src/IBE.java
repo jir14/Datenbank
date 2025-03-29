@@ -1,5 +1,4 @@
 
-import java.util.Random;
 
 public class IBE extends Student {
 
@@ -10,8 +9,7 @@ public class IBE extends Student {
     @Override
     public String specialAbility()
     {
-        Random rand = new Random();
-        int hash = rand.nextInt(11);
+        int hash;
         int HashNumber = 0;
         String hashName = "";
         String hashSurname = "";
@@ -20,6 +18,7 @@ public class IBE extends Student {
         char []pismeno= getName().toCharArray();
         char []pismenoSurname= getSurname().toCharArray();
 
+        hash = 7 + pismeno.length + pismenoSurname.length;
 
         for (int i = 0; i < pismeno.length; i++) {
             pismenoNmbr = Character.getNumericValue(pismeno[i]);
