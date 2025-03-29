@@ -1,7 +1,7 @@
 # WE :cupid: JAVA:exclamation::boom::fire:
 <details>
-  <summary>![VUT logo](https://vizual.vut.cz/images/o5.png)</summary>
-  # :trollface:
+  <summary></summary>
+   <h1>:trollface:</h1>
 </details>
 
 ![VUT logo](https://vizual.vut.cz/images/o5.png)
