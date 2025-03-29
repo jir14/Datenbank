@@ -52,8 +52,9 @@ public class Databaze {
     }
 
     public void getStudentsInInfo(Integer id) {
-        getOrderedStudentsIn(id);
-        getStudentInfo(id);
+        for (Student stud : getOrderedStudentsIn(id)) {
+            getStudentInfo(stud.getID());
+        }
     }
 
     public ArrayList<Student> getStudentsIn(Integer oborID) {
@@ -74,7 +75,7 @@ public class Databaze {
         for (Student stud : studs) {
             avg = stud.getStudPrumer();
             if (avg>=1 && avg<=5) {
-                sum=sum+stud.getStudPrumer();
+                sum+=stud.getStudPrumer();
                 validStud++;
             }
         }

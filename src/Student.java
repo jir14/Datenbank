@@ -8,7 +8,6 @@ public abstract class Student implements Comparable<Object> {
 	private	double StudPrumer=0.0;
 	private Integer BirthDate;
 	protected ArrayList<Integer> StudentMarks = new ArrayList<Integer>();
-	
 	public abstract String specialAbility();
 
 	public Student(Integer id, Integer oborID, String name, String surname, Integer birthDate) {

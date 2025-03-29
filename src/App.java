@@ -3,17 +3,23 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Databaze db = new Databaze();
-        db.setStudent(1, "pero", "negr", 2001);
-        db.setStudent(1, "david", "chuj", 2001);
-        db.setStudent(1, "pero", "negr", 2001);
+        db.setStudent(1, "pero", "bengr", 2001);
+        db.setStudent(1, "david", "ahuj", 2001);
+        db.setStudent(2, "zdenek", "zabak", 2001);
         db.setStudent(2, "Jorge", "BAD", 2001);
      
         db.setMark(1,1 );
-        db.setMark(1, 2);
+        db.setMark(1, 3);
+        db.setMark(2, 2);
+        db.setMark(3, 5);
+        db.setMark(4, 2);
         
-        System.out.println("pes");
 
-        System.out.println(db.getAvgIn(1));
+        System.out.println("--- DEBUG START ---");
+
+        
+
+        System.out.println("--- DEBUG END ---");
 
         Scanner sc=new Scanner(System.in);
         
