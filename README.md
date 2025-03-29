@@ -31,6 +31,6 @@
 | :x: |  k) Při ukončení programu se uloží veškeré informace do SQL databáze. | - | - | - |
 | :x: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | - | - | - |
 
-### Banger na konec
-:clapper: :link: https://www.youtube.com/watch?v=yup8gIXxWDU
+### Banger na konec :clapper: :musical_note:
+:link: https://www.youtube.com/watch?v=yup8gIXxWDU
 [![Watch the video](https://img.youtube.com/vi/yup8gIXxWDU/hqdefault.jpg)](https://youtu.be/yup8gIXxWDU)
