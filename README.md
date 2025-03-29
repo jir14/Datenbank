@@ -6,6 +6,7 @@
 
 ![VUT logo](https://vizual.vut.cz/images/o5.png)
 
+## Meanings of marks
 | mark  | state |
 | ------------- | ------------- |
 | :white_check_mark:  | done  |
