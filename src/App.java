@@ -8,8 +8,8 @@ public class App {
         boolean run=true;
 
         //Debug
-        /*
         System.out.println("--- DEBUG START ---");
+        /*
         db.setStudent(1, "pero", "bengr", 2001);
         db.setStudent(1, "david", "ahuj", 2001);
         db.setStudent(2, "zdenek", "zabak", 2001);
