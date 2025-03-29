@@ -68,11 +68,17 @@ public class Databaze {
 
     public double getAvgIn(Integer oborID) {
         double sum=0.0;
+        double avg=0.0;
+        Integer validStud=0;
         ArrayList<Student> studs = getStudentsIn(oborID);
         for (Student stud : studs) {
-            sum=+stud.getStudPrumer();
+            avg = stud.getStudPrumer();
+            if (avg>=1 && avg<=5) {
+                sum=sum+stud.getStudPrumer();
+                validStud++;
+            }
         }
-        return sum/studs.size();
+        return sum/validStud;
     }
 
     public Integer getNumberOfStudentsIn(Integer oborID) {

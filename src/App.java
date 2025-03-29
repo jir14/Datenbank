@@ -2,17 +2,18 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("David je ghej");
-        System.out.println("David je ghej");
         Databaze db = new Databaze();
         db.setStudent(1, "pero", "negr", 2001);
         db.setStudent(1, "david", "chuj", 2001);
         db.setStudent(1, "pero", "negr", 2001);
         db.setStudent(2, "Jorge", "BAD", 2001);
-        System.out.println(db.getStudent(1).getName());
-        for (Student stud : db.getOrderedStudentsIn(1)) {
-            System.out.println(stud.getSurname());
-        }
+     
+        db.setMark(1,1 );
+        db.setMark(1, 2);
+        
+        System.out.println("pes");
+
+        System.out.println(db.getAvgIn(1));
 
         Scanner sc=new Scanner(System.in);
         
@@ -34,7 +35,7 @@ public class App {
             //2. Vytvoreni studenta
             case 2:
                 //Volba oboru
-                System.out.println("Zadejte nazev oboru: [1. TLI; 2. IBE]: ");
+                System.out.println("Zadejte kod oboru: [1. TLI; 2. IBE]: ");
                 int obor = sc.nextInt();
                 
                 //Zadani jmena

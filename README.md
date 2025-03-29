@@ -5,7 +5,10 @@
 | ------------- | ------------- |
 | :white_check_mark:  | done  |
 | :pushpin:  | testing needed  |
+| :pencil2:  | backend implemented (may include exceptions)  |
+| :newspaper:  | frontend impelemented (including checks)  |
 | :x:  | not implemented yet  |
+
 
 
 | state  | zadani | implemented in |
