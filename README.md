@@ -1,6 +1,6 @@
 # WE :cupid: JAVA:exclamation::boom::fire:
 <details>
-  <summary>:interrobang:</summary>
+  <summary>FR!</summary>
    :trollface:
 </details>
 
@@ -32,5 +32,5 @@
 | :x: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | - | - | - |
 
 ### Banger na konec
+:clapper: :link: https://www.youtube.com/watch?v=yup8gIXxWDU
 [![Watch the video](https://img.youtube.com/vi/yup8gIXxWDU/hqdefault.jpg)](https://youtu.be/yup8gIXxWDU)
-:clapper: https://www.youtube.com/watch?v=yup8gIXxWDU
