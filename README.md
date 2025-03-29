@@ -30,3 +30,6 @@
 | :x: |  j) Načtení vybraného studenta ze souboru. | - | - | - |
 | :x: |  k) Při ukončení programu se uloží veškeré informace do SQL databáze. | - | - | - |
 | :x: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | - | - | - |
+
+### Banger na konec
+:clapper: https://www.youtube.com/watch?v=yup8gIXxWDU
