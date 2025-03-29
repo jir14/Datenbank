@@ -1,7 +1,7 @@
 # WE :cupid: JAVA:exclamation::boom::fire:
 <details>
-  <summary></summary>
-   <h1>:trollface:</h1>
+  <summary>:interrobang:</summary>
+   :trollface:
 </details>
 
 ![VUT logo](https://vizual.vut.cz/images/o5.png)
@@ -32,5 +32,5 @@
 | :x: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | - | - | - |
 
 ### Banger na konec
-:clapper: https://www.youtube.com/watch?v=yup8gIXxWDU
 [![Watch the video](https://img.youtube.com/vi/yup8gIXxWDU/hqdefault.jpg)](https://youtu.be/yup8gIXxWDU)
+:clapper: https://www.youtube.com/watch?v=yup8gIXxWDU
