@@ -1,6 +1,6 @@
 # WE :cupid: JAVA:exclamation::boom::fire:
 <details>
-  <summary>FR!</summary>
+  <summary>for real</summary>
    :trollface:
 </details>
 
