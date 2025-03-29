@@ -1,5 +1,6 @@
+# WE :cupid: JAVA:exclamation::boom::fire:
 <details>
-  <summary># WE :cupid: JAVA:exclamation::boom::fire:</summary>
+  <summary></summary>
   :trollface:
 </details>
 
