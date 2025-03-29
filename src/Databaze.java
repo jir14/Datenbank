@@ -17,6 +17,10 @@ public class Databaze {
         return ID;
     }
 
+    public Integer getID() {
+        return ID;
+    }
+
     public void setStudent(Integer oborID, String name, String surname, Integer birthDate) {
         getNextID();
         switch (oborID) {
