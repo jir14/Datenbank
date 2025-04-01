@@ -6,7 +6,7 @@ import java.util.Map;
 public class Databaze {
 
     private Integer ID=0;
-    private Map<Integer, Student> StudentList;
+    private static Map<Integer, Student> StudentList;
 
     public Databaze() {
         StudentList=new HashMap<Integer, Student>();
@@ -37,7 +37,7 @@ public class Databaze {
         }
     }
 
-    public Student getStudent(Integer id) {
+    public static Student getStudent(Integer id) {
         return StudentList.get(id);
     }
 
@@ -96,12 +96,19 @@ public class Databaze {
         return studs;
     }
 
-    public void setMark(Integer id, Integer mark) {
-        StudentList.get(id).addMark(mark);
+    public boolean setMark(Integer id, Integer mark) {
+        if (StudentList.get(id).addMark(mark)) {
+            return true;
+        }
+        return false;
     }
 
     public String getSpecialAbility(Integer id)
     {
         return StudentList.get(id).specialAbility();
+    }
+
+    public Integer getNumberOfStudents() {
+        return StudentList.size();
     }
 }

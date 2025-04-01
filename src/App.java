@@ -5,9 +5,12 @@ public class App {
         //Inicializace
         Databaze db = new Databaze();
         Scanner sc=new Scanner(System.in);
-        boolean run=true;
+        boolean run=true;  
+        boolean exit=false;
+        int _int;
 
         //Debug
+        /*
         System.out.println("--- DEBUG START ---");
         
         db.setStudent(1, "pero", "bengr", 2001);
@@ -24,32 +27,38 @@ public class App {
 
         System.out.println("--- DEBUG END ---");
         //Debug
+        */
+
+        System.out.println("\033[0;31m" + "####################\r\n" +
+                            "#####" + "\u001B[47m" + "     " + "\u001B[0m" + "\033[0;31m" + "##########\r\n" +
+                            "##########" + "\u001B[47m" +  "  ..." + "\u001B[0m" + "\033[0;31m" + "#####\r\n" +
+                            "##########" + "\u001B[47m" + " " + "\u001B[0m" + "\033[0;31m" + "#########\r\n" +
+                            "##########" + "\u001B[47m" + " " + "\u001B[0m" + "\033[0;31m" + "#########\r\n" +
+                            "##########" + "\u001B[47m" + " " + "\u001B[0m" + "\033[0;31m" + "#########\r\n" +
+                            "####################\r\n" +
+                            "\u001B[0m"
+                            );
 
 
         while (run) {
+            System.out.println("Hlavni menu");
             System.out.println("1. Vytvoreni databaze");
             System.out.println("2. Vytvoreni studenta");
-            System.out.println("3. Vypis studenta");
-            System.out.println("4. Abecedni vypis studentu");
+            System.out.println("3. Pridani znamky");
+            System.out.println("4. Podrobnosti studenta");
             System.out.println("5. Informace o oboru");
-            System.out.print("Vase volba: ");
+            System.out.print("volba> ");
             int volba = Tests.IntOnly(sc);
             System.out.println();
 
             switch(volba)
             {
-                //1. Vytvoreni databaze
                 case 1:
                     db = new Databaze();
                     break;
                     
-                //2. Vytvoreni studenta
                 case 2:
-                    int oborID;
-                    do {
-                        System.out.println("Zadejte kod oboru [TLI - 1; IBE - 2]: ");
-                        oborID = Tests.IntOnly(sc);
-                    } while (oborID<1 || oborID>2);
+                    _int=Tests.CisloOboru(sc);
 
                     System.out.println("Zadejte jmeno studenta: ");
                     String name = sc.next();
@@ -63,99 +72,99 @@ public class App {
                         birthDate = Tests.IntOnly(sc);
                     } while (birthDate<1);
 
-                    if (db==null)
-                    {
-                        System.out.println("Databaze nebyla vytvorena, vytvareni databaze");
-                        db=new Databaze();
-                    }
-                    db.setStudent(oborID, name, surname, birthDate);
+                    db.setStudent(_int, name, surname, birthDate);
                     System.out.println("Student vytvoren, ID=" + db.getID());
                     break;
-                
-                //3. Vypis studenta
+
                 case 3:
-                    System.out.println("1. Vypis studenta");
-                    System.out.println("2. Specialni abilita studenta");
-                    System.out.println("3. Odstraneni studenta");
-                    int volba1 = Tests.IntOnly(sc);
-                    switch(volba1)
-                    {
-                        case 1:
-                            int ID=0;
-                            boolean repeat=true;
-                            do {
-                                System.out.println("Zadejte ID studenta: ");
-                                ID = Tests.IntOnly(sc);
-                                if (db.getStudent(ID)==null) {
-                                    System.out.println("Student se zadanym ID neexistuje");
-                                } else {
-                                    repeat=false;
-                                }
-                            } while (repeat);
-                            db.getStudentInfo(ID);
-                            break;
-
-                        case 2:
-                            ID=0;
-                            repeat=true;
-                            do {
-                                System.out.println("Zadejte ID studenta: ");
-                                ID = Tests.IntOnly(sc);
-                                if (db.getStudent(ID)==null) {
-                                    System.out.println("Student se zadanym ID neexistuje");
-                                } else {
-                                    repeat=false;
-                                }
-                            } while (repeat);
-                            db.getSpecialAbility(ID);
-                            break;
-                        case 3:
-                            ID=0;
-                            repeat=true;
-                            do {
-                                System.out.println("Zadejte ID studenta: ");
-                                ID = Tests.IntOnly(sc);
-                                if (db.getStudent(ID)==null) {
-                                    System.out.println("Student se zadanym ID neexistuje");
-                                } else {
-                                    repeat=false;
-                                }
-                            } while (repeat);
-                            db.Wykonanie(ID);
-                            System.out.println("Student se zadanym ID: "+ ID + " byl odstranen");
-                            break;
-                        default:
-                            System.out.println("Byla zvolena neexistujici volba");
-                            break;
-                    }
-                    
+                    _int = Tests.ValidStudID(sc);
+                    db.setMark(_int, Tests.markRange(sc));
                     break;
                 
-                //4. Abecedni vypis studentu
                 case 4:
+                    if (db.getNumberOfStudents()==0) {
+                        System.out.println("V databazi se nenachazi zadny student");
+                        break;
+                    }
+                    _int = Tests.ValidStudID(sc);
+                    exit=false;      
+
+                    do {
+                        System.out.println();
+                        System.out.println("Hlavni menu");
+                        System.out.println("└> Podrobnosti studenta "+_int);
+                        System.out.println("   1. Vypis studenta");
+                        System.out.println("   2. Specialni abilita studenta");
+                        System.out.println("   3. Odstraneni studenta");
+                        System.out.println("   4. Zpet");
+                        System.out.print("volba> ");
+                        volba = Tests.IntOnly(sc);
+                        System.out.println();
+                        switch(volba)
+                        {
+                            case 1:
+                                db.getStudentInfo(_int);
+                                break;
+
+                            case 2:
+                                db.getSpecialAbility(_int);
+                                break;
+                            case 3:
+                                db.Wykonanie(_int);
+                                System.out.println("Student se zadanym ID: "+ _int + " byl odstranen");
+                                exit=true;
+                                break; 
+                            case 4:
+                                exit=true;    
+                            default:
+                                System.out.println("Byla zvolena neexistujici volba");
+                                break;
+                    }
+                    } while (!exit); 
                     break;
-                
-                //5. Informace o oboru
+                    
                 case 5:
-                    int vyberID = 0;
+                    System.out.println();
+                    _int=Tests.CisloOboru(sc); 
+                    exit=false;        
 
-                    do { 
-                        System.out.print("Zadejte obor: [0 - Obecne; 1 - TLI; 2 - IBE]");
-                        vyberID = Tests.IntOnly(sc);
+                    do {
+                        System.out.println();
+                        System.out.println("Hlavni menu");
+                        System.out.println("└> Informace o oboru s kodem "+_int);
+                        System.out.println("   1. Pocet studentu oboru");
+                        System.out.println("   2. Prumerne hodnoceni zaka oboru");
+                        System.out.println("   3. Studenti oboru dle abecedy");
+                        System.out.println("   4. exit");
+                        System.out.print("volba> ");
+                        volba = Tests.IntOnly(sc);
+                        switch (volba) {
+                            case 1:
+                                System.out.println(db.getNumberOfStudentsIn(_int));
+                                break;
+
+                            case 2:
+                                double avgVysledek = db.getAvgIn(_int);
+                                if(Double.isNaN(avgVysledek)) 
+                                {
+                                    System.out.println("Nebyly zadany znamky pro vypocet prumeru");
+                                } else {                   
+                                    System.out.println("Prumer oboru: " + avgVysledek);
+                                }
+                                break;
+
+                            case 3:
+                                db.getStudentsInInfo(_int); 
+                                break;
                         
-                    } while (vyberID > 2 || vyberID < 0);
-
-                    double avgVysledek = db.getAvgIn(vyberID);
-
-                    //Rozhodnout pokud chceme případ 0 (obecně) nebo ne
-                    if(Double.isNaN(avgVysledek)) 
-                    {
-                            System.out.println("Nebyly zadany znamky pro vypocet prumeru");
+                            case 4:
+                                exit=true;
+                            
+                            default:
+                                System.out.println("Byla zvolena neexistujici volba");
+                                break;
                     }
-                    else 
-                    {                   
-                        System.out.println("Prumer:" + db.getAvgIn(vyberID));
-                    }
+                    } while (!exit);
                     break;
 
                 default:
