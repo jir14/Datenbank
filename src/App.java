@@ -45,29 +45,24 @@ public class App {
                     
                 //2. Vytvoreni studenta
                 case 2:
-                    //Volba oboru
                     int oborID;
                     do {
                         System.out.println("Zadejte kod oboru [TLI - 1; IBE - 2]: ");
                         oborID = Tests.IntOnly(sc);
                     } while (oborID<1 || oborID>2);
 
-                    //Zadani jmena
                     System.out.println("Zadejte jmeno studenta: ");
                     String name = sc.next();
 
-                    //Zadani prijmeni
                     System.out.println("Zadejte prijmeni studenta: ");
                     String surname = sc.next();
 
-                    //Zadani data narozeni
                     int birthDate=0;
                     do {
                         System.out.println("Zadejte rok narozeni: ");
                         birthDate = Tests.IntOnly(sc);
                     } while (birthDate<1);
 
-                    //Pripsani
                     if (db==null)
                     {
                         System.out.println("Databaze nebyla vytvorena, vytvareni databaze");
