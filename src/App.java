@@ -76,6 +76,7 @@ public class App {
                 case 3:
                     System.out.println("1. Vypis studenta");
                     System.out.println("2. Specialni abilita studenta");
+                    System.out.println("3. Odstraneni studenta");
                     int volba1 = Tests.IntOnly(sc);
                     switch(volba1)
                     {
@@ -108,7 +109,21 @@ public class App {
                             } while (repeat);
                             db.getSpecialAbility(ID);
                             break;
-
+                        case 3:
+                            ID=0;
+                            repeat=true;
+                            do {
+                                System.out.println("Zadejte ID studenta: ");
+                                ID = Tests.IntOnly(sc);
+                                if (db.getStudent(ID)==null) {
+                                    System.out.println("Student se zadanym ID neexistuje");
+                                } else {
+                                    repeat=false;
+                                }
+                            } while (repeat);
+                            db.Wykonanie(ID);
+                            System.out.println("Student se zadanym ID: "+ ID + " byl odstranen");
+                            break;
                         default:
                             System.out.println("Byla zvolena neexistujici volba");
                             break;
