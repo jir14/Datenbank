@@ -24,7 +24,7 @@
 | :newspaper: |  c) Propuštění studenta z univerzity – uživatel zadá ID studenta, který je odstraněn z databáze. | void Wykonanie(Integer id) | :pushpin: | :x: |
 | :newspaper: |  d) Nalezení jednotlivých studentů dle jejich ID a výpis ostatních informací (jméno, příjmení, rok narození, studijní průměr). | void getStudentInfo(Integer id) |  :pushpin: | :x: |
 | :newspaper: |  e) Pro vybraného studenta (dle ID) spustit jeho dovednost (viz rozdělení studentů dle oborů). | void specialAbility(Integer id) | :pushpin: | :x: |
-| :newspaper: |  f) Abecedně řazený výpis všech studentů (dle příjmení) v jednotlivých skupinách (ID, jméno, příjmení, rok narození, studijní průměr). | void getStudentsInInfo(Integer id) | :heavy_check_mark: kod oboru 1/2) | :x: |
+| :newspaper: |  f) Abecedně řazený výpis všech studentů (dle příjmení) v jednotlivých skupinách (ID, jméno, příjmení, rok narození, studijní průměr). | void getStudentsInInfo(Integer id) | :pushpin: kod oboru 1/2) | :x: |
 | :newspaper: |  g) Výpis obecného studijního průměru v obou oborech (společný průměr všech studentů v daném oboru). | double getAvgIn(Integer oborID) | :pushpin: | :x: |
 | :newspaper: |  h) Výpis celkového počtu studentů v jednotlivých skupinách. | Integer getNumberOfStudentsIn(Integer oborID) | :pushpin: | :x: |
 | :x: |  i) Vymazání vybraného studenta ze souboru. | - | - | - |
