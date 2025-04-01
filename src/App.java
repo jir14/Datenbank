@@ -74,18 +74,46 @@ public class App {
                 
                 //3. Vypis studenta
                 case 3:
-                    int ID=0;
-                    boolean repeat=true;
-                    do {
-                        System.out.println("Zadejte ID studenta: ");
-                        ID = Tests.IntOnly(sc);
-                        if (db.getStudent(ID)==null) {
-                            System.out.println("Student se zadanym ID neexistuje");
-                        } else {
-                            repeat=false;
-                        }
-                    } while (repeat);
-                    db.getStudentInfo(ID);
+                    System.out.println("1. Vypis studenta");
+                    System.out.println("2. Specialni abilita studenta");
+                    int volba1 = Tests.IntOnly(sc);
+                    switch(volba1)
+                    {
+                        case 1:
+                            int ID=0;
+                            boolean repeat=true;
+                            do {
+                                System.out.println("Zadejte ID studenta: ");
+                                ID = Tests.IntOnly(sc);
+                                if (db.getStudent(ID)==null) {
+                                    System.out.println("Student se zadanym ID neexistuje");
+                                } else {
+                                    repeat=false;
+                                }
+                            } while (repeat);
+                            db.getStudentInfo(ID);
+                            break;
+
+                        case 2:
+                            ID=0;
+                            repeat=true;
+                            do {
+                                System.out.println("Zadejte ID studenta: ");
+                                ID = Tests.IntOnly(sc);
+                                if (db.getStudent(ID)==null) {
+                                    System.out.println("Student se zadanym ID neexistuje");
+                                } else {
+                                    repeat=false;
+                                }
+                            } while (repeat);
+                            db.getSpecialAbility(ID);
+                            break;
+
+                        default:
+                            System.out.println("Byla zvolena neexistujici volba");
+                            break;
+                    }
+                    
                     break;
                 
                 //4. Abecedni vypis studentu
@@ -114,8 +142,9 @@ public class App {
                         System.out.println("Prumer:" + db.getAvgIn(vyberID));
                     }
                     break;
+
                 default:
-                    System.out.println("Vyla zvolena neexistujici volba");
+                    System.out.println("Byla zvolena neexistujici volba");
                     break;
             } 
             System.out.println();

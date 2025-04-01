@@ -31,7 +31,7 @@ public class IBE extends Student {
             HashNumber += pismenoNmbr*hash;
             hashSurname = String.valueOf(HashNumber);
         }
-
+        System.out.println(hashName + " " + hashSurname);
         return hashName + " " + hashSurname;
     }
 

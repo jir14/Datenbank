@@ -99,4 +99,9 @@ public class Databaze {
     public void setMark(Integer id, Integer mark) {
         StudentList.get(id).addMark(mark);
     }
+
+    public String getSpecialAbility(Integer id)
+    {
+        return StudentList.get(id).specialAbility();
+    }
 }

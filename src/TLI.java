@@ -58,7 +58,7 @@ public class TLI extends Student {
             pismeno = Character.toLowerCase(pismeno);
             morseSurname += MorseCode.get(pismeno) + " ";
         }
-
+        System.out.println(morseName + " " + morseSurname);
         return morseName + " " + morseSurname;
     }
 
