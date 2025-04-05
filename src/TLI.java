@@ -44,6 +44,16 @@ public class TLI extends Student {
         MorseCode.put('x', "-..-");
         MorseCode.put('y', "-.--");
         MorseCode.put('z', "--..");
+        MorseCode.put('1', ".----");
+        MorseCode.put('2', "..---");
+        MorseCode.put('3', "...--");
+        MorseCode.put('4', "....-");
+        MorseCode.put('5', ".....");
+        MorseCode.put('6', "-....");
+        MorseCode.put('7', "--...");
+        MorseCode.put('8', "---..");
+        MorseCode.put('9', "----.");
+        MorseCode.put('0', "-----");
 
         for (int i = 0; i < nameArray.length; i++)
         {
