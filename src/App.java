@@ -74,7 +74,6 @@ public class App {
                         volba = Tests.IntOnly(sc);
                         switch (volba) {
                         case 1:
-                            System.out.println("Zadejte jmeno souboru (xz.db): ");
                             if  (database.DBconnect(dbName)) {
                                 if (database.DBload()) {
                                     System.out.println("Import probehl uspesne");
@@ -93,6 +92,8 @@ public class App {
                                 System.out.println("Vytvarim novoud DB s nazvem "+dbName);
                                 database.DBconnect(dbName);
                                 database.DBsetup();
+                            } else {
+                                System.out.println("Databaze "+dbName+" je jiz pouzivana.");
                             }
                             break;
 
