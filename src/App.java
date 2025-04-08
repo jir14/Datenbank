@@ -5,9 +5,11 @@ public class App {
         //Inicializace
         Databaze db = new Databaze();
         Scanner sc=new Scanner(System.in);
+        DB database = new DB();
         boolean run=true;  
         boolean exit=false;
         int _int;
+        String dbName;
 
         //Debug
         /*
@@ -18,12 +20,11 @@ public class App {
         db.setStudent(2, "zdenek", "zabak", 2001);
         db.setStudent(2, "Jorge", "BAD", 2001);
      
-        db.setMark(1,1 );
+        db.setMark(1, 1 );
         db.setMark(1, 3);
         db.setMark(2, 2);
         db.setMark(3, 5);
         db.setMark(4, 2);
-        
 
         System.out.println("--- DEBUG END ---");
         //Debug
@@ -42,11 +43,12 @@ public class App {
 
         while (run) {
             System.out.println("Hlavni menu");
-            System.out.println("1. Vytvoreni databaze");
+            System.out.println("1. Upravy databaze");
             System.out.println("2. Vytvoreni studenta");
             System.out.println("3. Pridani znamky");
             System.out.println("4. Podrobnosti studenta");
             System.out.println("5. Informace o oboru");
+            System.out.println("6. Ukoncit aplikaci");
             System.out.print("volba> ");
             int volba = Tests.IntOnly(sc);
             System.out.println();
@@ -54,9 +56,84 @@ public class App {
             switch(volba)
             {
                 case 1:
-                    db = new Databaze();
-                    break;
+                    exit=false;
+                    dbName="DB.db (default)";
+
+                    do {
+                        System.out.println();
+                        System.out.println("Hlavni menu");
+                        System.out.println("└> Prace s databazi "+dbName);
+                        System.out.println("   1. Nacteni dat z DB");
+                        System.out.println("   2. Zmena DB");
+                        System.out.println("   3. Nacteni studenta z DB");
+                        System.out.println("   4. Smazani studenta z DB");
+                        System.out.println("   5. Uloz databazi");
+                        System.out.println("   6. Smaz databazi");
+                        System.out.println("   7. exit");
+                        System.out.print("volba> ");
+                        volba = Tests.IntOnly(sc);
+                        switch (volba) {
+                        case 1:
+                            System.out.println("Zadejte jmeno souboru (xz.db): ");
+                            if  (database.DBconnect(dbName)) {
+                                if (database.DBload()) {
+                                    System.out.println("Import probehl uspesne");
+                                } else {
+                                    System.out.println("Chyba pri nacitani databaze"+dbName);
+                                }
+                            } else {
+                                System.out.println("Databazi "+dbName+" nelze otevrit");
+                            }
+                            break;
+
+                        case 2:
+                            System.out.println("Zadejte jmeno databaze (xz.db): ");
+                            dbName = sc.next();
+                            if (dbName!=database.getDBName()) {
+                                System.out.println("Vytvarim novoud DB s nazvem "+dbName);
+                                database.DBconnect(dbName);
+                                database.DBsetup();
+                            }
+                            break;
+
+                        case 3:
+                            System.out.println("Zadejte ID studenta, ktereho chcete nacist: ");
+                            _int = Tests.IntOnly(sc);
+                            database.DBloadStud(_int);
+                            break;
+
+                        case 4:
+
+                            break;
                     
+                        case 5:
+                            System.out.println("Zadejte jmeno databaze (xz.db): ");
+                            dbName = sc.next();
+                            if  (database.DBconnect(dbName)) {
+                                if (database.DBfill()) {
+                                    System.out.println("Databze ulozena do souboru "+dbName);
+                                } else {
+                                    System.out.println("Chyba pri ukladani databaze");
+                                }
+                            } else {
+                                System.out.println("Databazi "+dbName+" nelze ulozit");
+                            }
+                            break;
+
+                        case 6:
+                            
+                            break;
+
+                        case 7:
+                            exit=true;
+                            break;
+                        
+                        default:
+                            System.out.println("Byla zvolena neexistujici volba");
+                            break;
+                        }
+                    } while (!exit);
+                    break;
                 case 2:
                     _int=Tests.CisloOboru(sc);
 
@@ -165,6 +242,10 @@ public class App {
                                 break;
                     }
                     } while (!exit);
+                    break;
+
+                case 6:
+                    run=false;
                     break;
 
                 default:

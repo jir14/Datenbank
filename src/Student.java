@@ -43,6 +43,15 @@ public abstract class Student implements Comparable<Object> {
 		return false;
 	}
 
+	public boolean addMarkOnly(Integer mark) {
+		if (mark >= 1 && mark <= 5) {
+			StudentMarks.add(mark);
+			StudPrumer = calcStudPrumer();
+			return true;
+		}
+		return false;
+	}
+
 	public ArrayList<Integer> getMarks() {
 		return StudentMarks;
 	}
@@ -53,6 +62,14 @@ public abstract class Student implements Comparable<Object> {
 
 	public double getStudPrumer() {
 		return StudPrumer;
+	}
+
+	public boolean setStudPrumer(Double avg) {
+		if (avg >= 1 && avg <= 5) {
+			StudPrumer=avg;
+			return true;
+		}
+		return false;
 	}
 
 	private double calcStudPrumer() {

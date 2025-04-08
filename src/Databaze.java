@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Databaze {
 
-    private Integer ID=0;
-    private static Map<Integer, Student> StudentList;
+    private static Integer ID=0;
+    protected static Map<Integer, Student> StudentList;
 
     public Databaze() {
         StudentList=new HashMap<Integer, Student>();
@@ -21,8 +21,28 @@ public class Databaze {
         return ID;
     }
 
+    public void setID(Integer id) {
+        ID=id;
+    }
+
     public void setStudent(Integer oborID, String name, String surname, Integer birthDate) {
         getNextID();
+        switch (oborID) {
+            case 1:
+                StudentList.put(ID, new TLI(ID, oborID, name, surname, birthDate));
+                break;
+            case 2:
+                StudentList.put(ID, new IBE(ID, oborID, name, surname, birthDate));
+                break;
+
+            default:
+                System.out.println("Zadany obor neexistuje.");
+                break;
+        }
+    }
+
+    public void setStudent(Integer oborID, String name, String surname, Integer birthDate, Integer ID) {
+        setID(ID);
         switch (oborID) {
             case 1:
                 StudentList.put(ID, new TLI(ID, oborID, name, surname, birthDate));
@@ -110,5 +130,12 @@ public class Databaze {
 
     public Integer getNumberOfStudents() {
         return StudentList.size();
+    }
+
+    public boolean fillDB() {
+        for (Student stud : StudentList.values()) {
+            System.out.println(DB.StudentList.size());
+        }
+        return true;
     }
 }
