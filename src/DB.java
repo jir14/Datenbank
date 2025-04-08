@@ -1,3 +1,4 @@
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +8,6 @@ import java.sql.Statement;
 
 public class DB extends Databaze {
     private Connection conn; 
-    private String sql;
     private String DBName;
 
     public String getDBName() {
@@ -73,18 +73,6 @@ public class DB extends Databaze {
         }
     }
 
-    public void DBClearTable() {
-        sql = "DELETE FROM students";
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.executeUpdate();
-            DBdisconnect();
-        } catch (Exception e) {
-            DBdisconnect();
-            System.out.println("Cannot clear table");
-        }
-    }
-
     public boolean DBload() {
         try {
             Statement stmt = conn.createStatement();
@@ -103,8 +91,10 @@ public class DB extends Databaze {
                 }
 
                 try {
-                    Statement stmtMarks = conn.createStatement();
-                    ResultSet rsMarks = stmtMarks.executeQuery("SELECT mark FROM marks WHERE ID="+ID);
+                    String sqlSelect = "SELECT mark FROM marks WHERE ID=?";
+                    PreparedStatement pstmtStud = conn.prepareStatement(sqlSelect);
+                    pstmtStud.setInt(1, ID);
+                    ResultSet rsMarks = pstmtStud.executeQuery();
 
                     while (rsMarks.next()) {
                         StudentList.get(ID).addMarkOnly(rsMarks.getInt("mark"));
@@ -124,8 +114,10 @@ public class DB extends Databaze {
 
     public boolean DBloadStud(Integer ID) {
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT oborID,name,surname,birthDate,avg FROM students WHERE ID="+ID);
+            String sqlSelect = "SELECT oborID,name,surname,birthDate,avg FROM students WHERE ID=?";
+            PreparedStatement pstmtStud = conn.prepareStatement(sqlSelect);
+            pstmtStud.setInt(1, ID);
+            ResultSet rs = pstmtStud.executeQuery();
 
             while (rs.next()) {
                 int oborID = rs.getInt("oborID");
@@ -139,8 +131,10 @@ public class DB extends Databaze {
                 }
 
                 try {
-                    Statement stmtMarks = conn.createStatement();
-                    ResultSet rsMarks = stmtMarks.executeQuery("SELECT mark FROM marks WHERE ID="+ID);
+                    String sqlSelectMark = "SELECT mark FROM marks WHERE ID=?";
+                    PreparedStatement pstmtStudMark = conn.prepareStatement(sqlSelect);
+                    pstmtStudMark.setInt(1, ID);
+                    ResultSet rsMarks = pstmtStudMark.executeQuery();
 
                     while (rsMarks.next()) {
                         StudentList.get(ID).addMark(rs.getInt("mark"));
@@ -157,7 +151,20 @@ public class DB extends Databaze {
             System.out.println("Data not loaded");
             return false;
         }
-    } 
+    }
+
+    public boolean DBremoveStud(Integer studID) {
+        String sqlRemoveStud = "DELETE FROM students WHERE ID=?";
+        try {
+            PreparedStatement pstmtStud = conn.prepareStatement(sqlRemoveStud);
+            pstmtStud.setInt(1, studID);
+            pstmtStud.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+        
+    }
 
 	public boolean DBfill() {
         Integer studID;
@@ -203,5 +210,11 @@ public class DB extends Databaze {
         }
         DBdisconnect();
         return true;
+    }
+
+    public boolean DBremove(String dbName) {
+        DBdisconnect();
+        boolean result = new File(dbName).delete();
+        return result;
     }
 }

@@ -78,7 +78,7 @@ public class App {
                                 if (database.DBload()) {
                                     System.out.println("Import probehl uspesne");
                                 } else {
-                                    System.out.println("Chyba pri nacitani databaze"+dbName);
+                                    System.out.println("Chyba pri nacitani databaze "+dbName);
                                 }
                             } else {
                                 System.out.println("Databazi "+dbName+" nelze otevrit");
@@ -104,7 +104,7 @@ public class App {
                             break;
 
                         case 4:
-
+                            
                             break;
                     
                         case 5:
@@ -122,10 +122,27 @@ public class App {
                             break;
 
                         case 6:
-                            
+                            System.out.println("Zadejte jmeno databaze (xz.db): ");
+                            dbName = sc.next();
+                            if (database.DBremove(dbName)) {
+                                System.out.println("Databaze "+dbName+" smazana.");
+                                System.out.println("Aktualni detabaze je DB.db");
+                            } else {
+                                System.out.println("Neco se pokazilo, databaze nesmazana.");
+                            }
                             break;
 
                         case 7:
+                            System.out.println("Ukladam DB do souboru "+dbName);
+                            if  (database.DBconnect(dbName)) {
+                                if (database.DBfill()) {
+                                    System.out.println("Databze ulozena do souboru "+dbName);
+                                } else {
+                                    System.out.println("Chyba pri ukladani databaze");
+                                }
+                            } else {
+                                System.out.println("Databazi "+dbName+" nelze ulozit");
+                            }
                             exit=true;
                             break;
                         
