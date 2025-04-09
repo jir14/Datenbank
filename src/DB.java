@@ -14,12 +14,10 @@ public class DB extends Databaze {
 		return DBName;
 	}
 
-	public void setDBName(String dBName) {
-		DBName = dBName;
-	}
-
     public boolean DBconnect() { 
-        conn=null; 
+        if (conn!=null) {
+            DBdisconnect();
+        }
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:"+DBName);       
         } 
@@ -31,7 +29,9 @@ public class DB extends Databaze {
     }
 
     public boolean DBconnect(String dbName) { 
-        conn=null; 
+        if (conn!=null) {
+            DBdisconnect();
+        } 
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:"+dbName);       
             DBName=dbName;
@@ -54,29 +54,26 @@ public class DB extends Databaze {
 	    }
     }
 
-    public void DBsetup() {     
+    public void DBsetup() { 
+        DBconnect(); 
         String sql1 = "CREATE TABLE IF NOT EXISTS students (ID int NOT NULL UNIQUE, oborID int NOT NULL, name varchar(50) NOT NULL, surname varchar(50) NOT NULL, birthDate int NOT NULL, avg double)";
         String sql2 = "CREATE TABLE IF NOT EXISTS marks (ID int NOT NULL, mark int NOT NULL)";
-        try {
-            if (conn!=null) {     
-                PreparedStatement preparedStatement;   
-                preparedStatement = conn.prepareStatement(sql1);
-                preparedStatement.executeUpdate();
-                preparedStatement = conn.prepareStatement(sql2);
-                preparedStatement.executeUpdate();
-                DBdisconnect();
-            }    
+        try (PreparedStatement preparedStatement1 = conn.prepareStatement(sql1);
+             PreparedStatement preparedStatement2 = conn.prepareStatement(sql2)) {     
+                preparedStatement1.executeUpdate();
+                preparedStatement2.executeUpdate();  
         } catch (Exception e) {
-            DBdisconnect();
             System.out.println(e.getMessage());
-
+        }
+        finally {
+            DBdisconnect();
         }
     }
 
     public boolean DBload() {
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT ID,oborID,name,surname,birthDate,avg FROM students");            
+        DBconnect(); 
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT ID,oborID,name,surname,birthDate,avg FROM students")){       
 
             while (rs.next()) {
                 int ID = rs.getInt("ID");
@@ -90,99 +87,55 @@ public class DB extends Databaze {
                     StudentList.get(ID).setStudPrumer(avg);
                 }
 
-                try {
-                    String sqlSelect = "SELECT mark FROM marks WHERE ID=?";
-                    PreparedStatement pstmtStud = conn.prepareStatement(sqlSelect);
-                    pstmtStud.setInt(1, ID);
-                    ResultSet rsMarks = pstmtStud.executeQuery();
+                String sqlSelectMark = "SELECT mark FROM marks WHERE ID=?";
 
-                    while (rsMarks.next()) {
-                        StudentList.get(ID).addMarkOnly(rsMarks.getInt("mark"));
-                    }
+                try (PreparedStatement pstmtStud = conn.prepareStatement(sqlSelectMark)) {
+                    
+                    pstmtStud.setInt(1, ID);
+
+                    try (ResultSet rsMarks = pstmtStud.executeQuery()){
+                        while (rsMarks.next()) {
+                            StudentList.get(ID).addMarkOnly(rsMarks.getInt("mark"));
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Cannot load marks for student n. "+ID);
+                    }       
                 } catch (Exception e) {
                     System.out.println("Cannot load marks for student n. "+ID);
                 }
             }
-            DBdisconnect();
             return true;  
         } catch (Exception e) {
-            DBdisconnect();
             System.out.println("Data not loaded");
             return false;
-        }
-    }
-
-    public boolean DBloadStud(Integer ID) {
-        try {
-            String sqlSelect = "SELECT oborID,name,surname,birthDate,avg FROM students WHERE ID=?";
-            PreparedStatement pstmtStud = conn.prepareStatement(sqlSelect);
-            pstmtStud.setInt(1, ID);
-            ResultSet rs = pstmtStud.executeQuery();
-
-            while (rs.next()) {
-                int oborID = rs.getInt("oborID");
-                String name = rs.getString("name");
-                String surname = rs.getString("surname");
-                int birthDate = rs.getInt("birthYear");
-                double avg = rs.getDouble("avg");
-                setStudent(oborID, name, surname, birthDate, ID);
-                if (!StudentList.get(ID).setStudPrumer(avg)) {
-                    System.out.println("Cannot set average for sudent n. "+ID);
-                }
-
-                try {
-                    String sqlSelectMark = "SELECT mark FROM marks WHERE ID=?";
-                    PreparedStatement pstmtStudMark = conn.prepareStatement(sqlSelect);
-                    pstmtStudMark.setInt(1, ID);
-                    ResultSet rsMarks = pstmtStudMark.executeQuery();
-
-                    while (rsMarks.next()) {
-                        StudentList.get(ID).addMark(rs.getInt("mark"));
-                    }
-                } catch (Exception e) {
-                    DBdisconnect();
-                    System.out.println("Cannot load marks for student n. "+ID);
-                }
-            }   
+        } 
+        finally {
             DBdisconnect();
-            return true;
-        } catch (Exception e) {
-            DBdisconnect();
-            System.out.println("Data not loaded");
-            return false;
         }
-    }
-
-    public boolean DBremoveStud(Integer studID) {
-        String sqlRemoveStud = "DELETE FROM students WHERE ID=?";
-        try {
-            PreparedStatement pstmtStud = conn.prepareStatement(sqlRemoveStud);
-            pstmtStud.setInt(1, studID);
-            pstmtStud.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
-        
     }
 
 	public boolean DBfill() {
+        DBconnect();
         Integer studID;
 
-        String sqlDeleteTables = "DROP TABLE IF EXISTS students, marks";
-        try {
-            conn.prepareStatement(sqlDeleteTables).executeUpdate();
+        String sqlDeleteStuds = "DROP TABLE IF EXISTS 'students'";
+        String sqlDeleteMarks = "DROP TABLE IF EXISTS 'marks'";
+        try (PreparedStatement prepStuds = conn.prepareStatement(sqlDeleteStuds);
+             PreparedStatement prepMarks = conn.prepareStatement(sqlDeleteMarks)) {
+            prepStuds.executeUpdate();
+            prepMarks.executeUpdate();
             System.out.println("Predesla verze databaze smazana");
+            DBsetup();
         } catch (SQLException e) {
-            System.out.println("Vytvarim novou databazi");
+            System.out.println("Vytvarim novou DB");
+            DBsetup();
         }
 
+        DBconnect();
         for (Student stud : StudentList.values()) {
             String sqlInsertStud = "INSERT INTO students(ID,oborID,name,surname,birthDate,avg) VALUES(?,?,?,?,?,?)";
-            try {
+            try (PreparedStatement pstmtStud = conn.prepareStatement(sqlInsertStud)) {
                 studID=stud.getID();
-                System.out.println(studID);
-                PreparedStatement pstmtStud = conn.prepareStatement(sqlInsertStud); 
                 pstmtStud.setInt(1, studID);
                 pstmtStud.setInt(2, stud.getOborID());
                 pstmtStud.setString(3, stud.getName());
@@ -193,8 +146,7 @@ public class DB extends Databaze {
 
                 for (Integer mark : stud.getMarks()) {
                     String sqlInsertMark = "INSERT INTO marks(ID,mark) VALUES(?,?)";
-                    try {
-                        PreparedStatement pstmtMarks = conn.prepareStatement(sqlInsertMark);
+                    try (PreparedStatement pstmtMarks = conn.prepareStatement(sqlInsertMark)) {
                         pstmtMarks.setInt(1, studID);
                         pstmtMarks.setInt(2, mark);
                         pstmtMarks.executeUpdate();
@@ -203,8 +155,8 @@ public class DB extends Databaze {
                     }
                 }
             } catch (SQLException e) {
-                DBdisconnect();
                 System.out.println(e.getMessage());
+                DBdisconnect();
                 return false;
             }
         }

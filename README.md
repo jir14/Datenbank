@@ -29,8 +29,8 @@
 | :newspaper: |  h) Výpis celkového počtu studentů v jednotlivých skupinách. | Integer getNumberOfStudentsIn(Integer oborID) | :pushpin: | :x: |
 | :x: |  i) Vymazání vybraného studenta ze souboru. | - | - | - |
 | :x: |  j) Načtení vybraného studenta ze souboru. | - | - | - |
-| :x: |  k) Při ukončení programu se uloží veškeré informace do SQL databáze. | - | - | - |
-| :x: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | - | - | - |
+| :newspaper: |  k) Při ukončení programu se uloží veškeré informace do SQL databáze. | boolean DBfill() | - | - |
+| :newspaper: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | boolean DBload() | - | - |
 
 ### Banger na konec :clapper: :musical_note:
 :link: https://www.youtube.com/watch?v=yup8gIXxWDU

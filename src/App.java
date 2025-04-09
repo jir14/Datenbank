@@ -9,7 +9,7 @@ public class App {
         boolean run=true;  
         boolean exit=false;
         int _int;
-        String dbName;
+        String dbName="DB.db";
 
         //Debug
         /*
@@ -57,7 +57,6 @@ public class App {
             {
                 case 1:
                     exit=false;
-                    dbName="DB.db (default)";
 
                     do {
                         System.out.println();
@@ -65,11 +64,9 @@ public class App {
                         System.out.println("└> Prace s databazi "+dbName);
                         System.out.println("   1. Nacteni dat z DB");
                         System.out.println("   2. Zmena DB");
-                        System.out.println("   3. Nacteni studenta z DB");
-                        System.out.println("   4. Smazani studenta z DB");
-                        System.out.println("   5. Uloz databazi");
-                        System.out.println("   6. Smaz databazi");
-                        System.out.println("   7. exit");
+                        System.out.println("   3. Uloz databazi");
+                        System.out.println("   4. Smaz databazi");
+                        System.out.println("   5. exit");
                         System.out.print("volba> ");
                         volba = Tests.IntOnly(sc);
                         switch (volba) {
@@ -89,30 +86,18 @@ public class App {
                             System.out.println("Zadejte jmeno databaze (xz.db): ");
                             dbName = sc.next();
                             if (dbName!=database.getDBName()) {
-                                System.out.println("Vytvarim novoud DB s nazvem "+dbName);
                                 database.DBconnect(dbName);
                                 database.DBsetup();
+                                System.out.println("Pripojeno k "+dbName);
                             } else {
                                 System.out.println("Databaze "+dbName+" je jiz pouzivana.");
                             }
                             break;
 
                         case 3:
-                            System.out.println("Zadejte ID studenta, ktereho chcete nacist: ");
-                            _int = Tests.IntOnly(sc);
-                            database.DBloadStud(_int);
-                            break;
-
-                        case 4:
-                            
-                            break;
-                    
-                        case 5:
-                            System.out.println("Zadejte jmeno databaze (xz.db): ");
-                            dbName = sc.next();
                             if  (database.DBconnect(dbName)) {
                                 if (database.DBfill()) {
-                                    System.out.println("Databze ulozena do souboru "+dbName);
+                                    System.out.println("Databaze ulozena do souboru "+dbName);
                                 } else {
                                     System.out.println("Chyba pri ukladani databaze");
                                 }
@@ -121,7 +106,7 @@ public class App {
                             }
                             break;
 
-                        case 6:
+                        case 4:
                             System.out.println("Zadejte jmeno databaze (xz.db): ");
                             dbName = sc.next();
                             if (database.DBremove(dbName)) {
@@ -132,7 +117,7 @@ public class App {
                             }
                             break;
 
-                        case 7:
+                        case 5:
                             System.out.println("Ukladam DB do souboru "+dbName);
                             if  (database.DBconnect(dbName)) {
                                 if (database.DBfill()) {
@@ -204,13 +189,17 @@ public class App {
                             case 2:
                                 db.getSpecialAbility(_int);
                                 break;
+
                             case 3:
                                 db.Wykonanie(_int);
                                 System.out.println("Student se zadanym ID: "+ _int + " byl odstranen");
                                 exit=true;
                                 break; 
+
                             case 4:
-                                exit=true;    
+                                exit=true;  
+                                break; 
+
                             default:
                                 System.out.println("Byla zvolena neexistujici volba");
                                 break;
@@ -254,6 +243,7 @@ public class App {
                         
                             case 4:
                                 exit=true;
+                                break;
                             
                             default:
                                 System.out.println("Byla zvolena neexistujici volba");
@@ -264,13 +254,16 @@ public class App {
 
                 case 6:
                     run=false;
+                    database.DBfill();
+                    System.out.println("Databaze "+dbName+" ulozena");
+                    System.out.println();
+                    System.out.println("Budeme se tesit priste!");
                     break;
 
                 default:
                     System.out.println("Byla zvolena neexistujici volba");
                     break;
             } 
-            System.out.println();
         }  
     }
 }
