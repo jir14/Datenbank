@@ -27,8 +27,8 @@
 | :newspaper: |  f) Abecedně řazený výpis všech studentů (dle příjmení) v jednotlivých skupinách (ID, jméno, příjmení, rok narození, studijní průměr). | void getStudentsInInfo(Integer id) | :pushpin: kod oboru 1/2) | :x: |
 | :newspaper: |  g) Výpis obecného studijního průměru v obou oborech (společný průměr všech studentů v daném oboru). | double getAvgIn(Integer oborID) | :pushpin: | :x: |
 | :newspaper: |  h) Výpis celkového počtu studentů v jednotlivých skupinách. | Integer getNumberOfStudentsIn(Integer oborID) | :pushpin: | :x: |
-| :x: |  i) Vymazání vybraného studenta ze souboru. | - | - | - |
-| :x: |  j) Načtení vybraného studenta ze souboru. | - | - | - |
+| :newspaper: |  i) Uložení vybraného studenta do souboru. | boolean ulozStudenta(String jmenoSouboru, Integer studID) | :pushpin: | - |
+| :newspaper: |  j) Načtení vybraného studenta ze souboru. | boolean nactiStudenta(String jmenoSouboru, Integer studID) | :pushpin: | - |
 | :newspaper: |  k) Při ukončení programu se uloží veškeré informace do SQL databáze. | boolean DBfill() | - | - |
 | :newspaper: |  l) Při spuštění programu se veškeré informace načtou z SQL databáze. | boolean DBload() | - | - |
 
