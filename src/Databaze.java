@@ -21,7 +21,7 @@ public class Databaze {
         return ID;
     }
 
-    public void setID(Integer id) {
+    protected void setID(Integer id) {
         ID=id;
     }
 
@@ -130,12 +130,5 @@ public class Databaze {
 
     public Integer getNumberOfStudents() {
         return StudentList.size();
-    }
-
-    public boolean fillDB() {
-        for (Student stud : StudentList.values()) {
-            System.out.println(DB.StudentList.size());
-        }
-        return true;
     }
 }

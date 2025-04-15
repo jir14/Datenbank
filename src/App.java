@@ -4,8 +4,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         //Inicializace
         Databaze db = new Databaze();
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         DB database = new DB();
+        Files file = new Files();
         boolean run=true;  
         boolean exit=false;
         int _int;
@@ -42,6 +43,7 @@ public class App {
 
 
         while (run) {
+            System.out.println();
             System.out.println("Hlavni menu");
             System.out.println("1. Upravy databaze");
             System.out.println("2. Vytvoreni studenta");
@@ -66,9 +68,12 @@ public class App {
                         System.out.println("   2. Zmena DB");
                         System.out.println("   3. Uloz databazi");
                         System.out.println("   4. Smaz databazi");
-                        System.out.println("   5. exit");
+                        System.out.println("   5. Uloz studenta do souboru");
+                        System.out.println("   6. Nacti studenta ze souboru");
+                        System.out.println("   7. exit");
                         System.out.print("volba> ");
                         volba = Tests.IntOnly(sc);
+                        String fileName;
                         switch (volba) {
                         case 1:
                             if  (database.DBconnect(dbName)) {
@@ -118,6 +123,33 @@ public class App {
                             break;
 
                         case 5:
+                            System.out.println("Zadejte jmeno souboru (xz.dat): ");
+                            fileName = sc.next();
+                            _int = Tests.ValidStudID(sc);
+                            if(file.ulozStudenta(fileName, _int)) {
+                                System.out.println("Student s ID "+_int+" ulozen do souboru "+fileName);
+                            } else {
+                                System.out.println("Studenta nebylo mozne ulozit do souboru");
+                            }
+                            break;
+
+                        case 6:
+                            System.out.println("Zadejte jmeno souboru (xz.dat): ");
+                            fileName = sc.next();
+                            System.out.println("Zadejte ID studenta, ktereho chcete nacist ze souboru: ");
+                            _int = Tests.IntOnly(sc);
+                            if (database.getStudent(_int)!=null) {
+                                System.out.println("Student se zadanym ID jiz existuje");
+                                break;
+                            }
+                            if(file.nactiStudenta(fileName, _int)) {
+                                System.out.println("Student s ID "+_int+" nacten ze souboru "+fileName);
+                            } else {
+                                System.out.println("Student s ID "+_int+" v souboru "+fileName+" nenalezen");
+                            }
+                            break;
+
+                        case 7:
                             System.out.println("Ukladam DB do souboru "+dbName);
                             if  (database.DBconnect(dbName)) {
                                 if (database.DBfill()) {
