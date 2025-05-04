@@ -46,7 +46,6 @@ public abstract class Student implements Comparable<Object> {
 	public boolean addMarkOnly(Integer mark) {
 		if (mark >= 1 && mark <= 5) {
 			StudentMarks.add(mark);
-			StudPrumer = calcStudPrumer();
 			return true;
 		}
 		return false;
